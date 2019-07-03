@@ -23,7 +23,7 @@ extension ToOneRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 	/// point to one of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to another entity.
-	public static func arbitrary<E: EntityType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> where E.Id == Identifiable.Identifier {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> where E.Id == Identifiable.Identifier {
 
 		return Gen.compose { c in
 			let idGen = Gen.fromElements(of: givenEntities).map { $0.id }
@@ -49,7 +49,7 @@ extension ToManyRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 	/// point to some number of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to other existing entities.
-	public static func arbitrary<E: EntityType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, MetaType, LinksType>> where E.Id == Relatable.Identifier {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, MetaType, LinksType>> where E.Id == Relatable.Identifier {
 		return Gen.compose { c in
 			let idsGen = Gen.fromElements(of: givenEntities).map { $0.id }.proliferate
 			return .init(ids: c.generate(using: idsGen),

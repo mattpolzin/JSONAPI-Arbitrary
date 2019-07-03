@@ -10,13 +10,13 @@ import JSONAPI
 
 extension SingleResourceBody: Arbitrary where Entity: Arbitrary {
 	public static var arbitrary: Gen<SingleResourceBody<Entity>> {
-		return Entity.arbitrary.map(SingleResourceBody.init(entity:))
+		return Entity.arbitrary.map(SingleResourceBody.init(resourceObject:))
 	}
 }
 
 extension ManyResourceBody: Arbitrary where Entity: Arbitrary {
 	public static var arbitrary: Gen<ManyResourceBody<Entity>> {
-		return Entity.arbitrary.proliferate.map(ManyResourceBody.init(entities:))
+		return Entity.arbitrary.proliferate.map(ManyResourceBody.init(resourceObjects:))
 	}
 }
 

@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/llvm-swift/FileCheck.git",
         "state": {
           "branch": null,
-          "revision": "bd9cb30ceee1f21c02f51a7168f58471449807d8",
-          "version": "0.1.0"
+          "revision": "00945abac615e5203701be0f090ed0e2d2ff15bf",
+          "version": "0.2.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/mattpolzin/JSONAPI.git",
         "state": {
           "branch": null,
-          "revision": "491fe1fbeaca69a04617ddfd8d767517e4a5b417",
-          "version": "0.21.0"
+          "revision": "099d17aa5803a64d62904f265144b795c38b6db5",
+          "version": "0.31.0"
         }
       },
       {
@@ -24,8 +24,35 @@
         "repositoryURL": "https://github.com/mattpolzin/Poly.git",
         "state": {
           "branch": null,
-          "revision": "d24d4c1214dd05f89eb1182a46592856dd0a0645",
-          "version": "2.0.0"
+          "revision": "38051821d7ef49e590e26e819a2fe447e50be9ff",
+          "version": "2.0.1"
+        }
+      },
+      {
+        "package": "Rainbow",
+        "repositoryURL": "https://github.com/onevcat/Rainbow.git",
+        "state": {
+          "branch": null,
+          "revision": "9c52c1952e9b2305d4507cf473392ac2d7c9b155",
+          "version": "3.1.5"
+        }
+      },
+      {
+        "package": "llbuild",
+        "repositoryURL": "https://github.com/apple/swift-llbuild.git",
+        "state": {
+          "branch": null,
+          "revision": "f1c9ad9a253cdf1aa89a7f5c99c30b4513b06ddb",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "SwiftPM",
+        "repositoryURL": "https://github.com/apple/swift-package-manager.git",
+        "state": {
+          "branch": null,
+          "revision": "8656a25cb906c1896339f950ac960ee1b4fe8034",
+          "version": "0.4.0"
         }
       },
       {
