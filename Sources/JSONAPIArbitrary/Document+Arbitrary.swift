@@ -101,10 +101,37 @@ extension Document where Error: Arbitrary, APIDescription: Arbitrary {
 	/// Arbitrary Document with errors but no
 	/// metadata or links (also guaranteed to not
 	/// be a data body).
-	public static var arbitraryErrors: Gen<Document<PrimaryResourceBody, MetaType, LinksType, IncludeType, APIDescription, Error>> {
+	public static var arbitraryErrorsWithoutMetaOrLinks: Gen<Document<PrimaryResourceBody, MetaType, LinksType, IncludeType, APIDescription, Error>> {
 		return Gen.compose { c in
 			Document(apiDescription: c.generate(),
 					 errors: c.generate())
 		}
 	}
+}
+
+extension Document.SuccessDocument: Arbitrary where PrimaryResourceBody: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary, IncludeType: Arbitrary, APIDescription: Arbitrary {
+    public static var arbitrary: Gen<Document<PrimaryResourceBody, MetaType, LinksType, IncludeType, APIDescription, Error>.SuccessDocument> {
+        return Gen.compose { c in
+            return Document.SuccessDocument(
+                apiDescription: c.generate(),
+                body: c.generate(),
+                includes: c.generate(),
+                meta: c.generate(),
+                links: c.generate()
+            )
+        }
+    }
+}
+
+extension Document.ErrorDocument: Arbitrary where Error: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary, APIDescription: Arbitrary {
+    public static var arbitrary: Gen<Document<PrimaryResourceBody, MetaType, LinksType, IncludeType, APIDescription, Error>.ErrorDocument> {
+        return Gen.compose { c in
+            return Document.ErrorDocument(
+                apiDescription: c.generate(),
+                errors: c.generate(),
+                meta: c.generate(),
+                links: c.generate()
+            )
+        }
+    }
 }

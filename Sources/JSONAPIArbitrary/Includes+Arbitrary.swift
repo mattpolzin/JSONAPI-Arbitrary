@@ -164,3 +164,58 @@ extension Include9: Arbitrary where A: Arbitrary, B: Arbitrary, C: Arbitrary, D:
 		return Gen.one(of: set1 + set2 + set3)
 	}
 }
+
+extension Include10: Arbitrary where A: Arbitrary, B: Arbitrary, C: Arbitrary, D: Arbitrary, E: Arbitrary, F: Arbitrary, G: Arbitrary, H: Arbitrary, I: Arbitrary, J: Arbitrary {
+    public static var arbitrary: Gen<Include10<A, B, C, D, E, F, G, H, I, J>> {
+        // Note broken up because compiler cannot typecheck entire array
+        // before it times out
+        let set1: [Gen<Include10<A, B, C, D, E, F, G, H, I, J>>] = [
+            A.arbitrary.map(Include10.init),
+            B.arbitrary.map(Include10.init),
+            C.arbitrary.map(Include10.init)
+        ]
+
+        let set2: [Gen<Include10<A, B, C, D, E, F, G, H, I, J>>] = [
+            D.arbitrary.map(Include10.init),
+            E.arbitrary.map(Include10.init),
+            F.arbitrary.map(Include10.init)
+        ]
+
+        let set3: [Gen<Include10<A, B, C, D, E, F, G, H, I, J>>] = [
+            G.arbitrary.map(Include10.init),
+            H.arbitrary.map(Include10.init),
+            I.arbitrary.map(Include10.init),
+            J.arbitrary.map(Include10.init)
+        ]
+
+        return Gen.one(of: set1 + set2 + set3)
+    }
+}
+
+extension Include11: Arbitrary where A: Arbitrary, B: Arbitrary, C: Arbitrary, D: Arbitrary, E: Arbitrary, F: Arbitrary, G: Arbitrary, H: Arbitrary, I: Arbitrary, J: Arbitrary, K: Arbitrary {
+    public static var arbitrary: Gen<Include11<A, B, C, D, E, F, G, H, I, J, K>> {
+        // Note broken up because compiler cannot typecheck entire array
+        // before it times out
+        let set1: [Gen<Include11<A, B, C, D, E, F, G, H, I, J, K>>] = [
+            A.arbitrary.map(Include11.init),
+            B.arbitrary.map(Include11.init),
+            C.arbitrary.map(Include11.init)
+        ]
+
+        let set2: [Gen<Include11<A, B, C, D, E, F, G, H, I, J, K>>] = [
+            D.arbitrary.map(Include11.init),
+            E.arbitrary.map(Include11.init),
+            F.arbitrary.map(Include11.init),
+            G.arbitrary.map(Include11.init),
+        ]
+
+        let set3: [Gen<Include11<A, B, C, D, E, F, G, H, I, J, K>>] = [
+            H.arbitrary.map(Include11.init),
+            I.arbitrary.map(Include11.init),
+            J.arbitrary.map(Include11.init),
+            K.arbitrary.map(Include11.init)
+        ]
+
+        return Gen.one(of: set1 + set2 + set3)
+    }
+}

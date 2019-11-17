@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/llvm-swift/FileCheck.git",
         "state": {
           "branch": null,
-          "revision": "00945abac615e5203701be0f090ed0e2d2ff15bf",
-          "version": "0.2.0"
+          "revision": "0eb888b85ca08c7ce85c8a6a459c94d7f282c1bb",
+          "version": "0.2.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/mattpolzin/JSONAPI.git",
         "state": {
           "branch": null,
-          "revision": "7824bd8f686762d47eafa3fed6df810d5b13c7fd",
-          "version": "1.0.0"
+          "revision": "6ab4237c97e27ab0b5e3e1fe34738fa031a8dab9",
+          "version": "3.0.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/mattpolzin/Poly.git",
         "state": {
           "branch": null,
-          "revision": "38051821d7ef49e590e26e819a2fe447e50be9ff",
-          "version": "2.0.1"
+          "revision": "0c9c08204142babc480938d704a23513d11420e5",
+          "version": "2.3.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/apple/swift-llbuild.git",
         "state": {
           "branch": null,
-          "revision": "f1c9ad9a253cdf1aa89a7f5c99c30b4513b06ddb",
-          "version": "0.1.1"
+          "revision": "f73b84bc1525998e5e267f9d830c1411487ac65e",
+          "version": "0.2.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/apple/swift-package-manager.git",
         "state": {
           "branch": null,
-          "revision": "8656a25cb906c1896339f950ac960ee1b4fe8034",
-          "version": "0.4.0"
+          "revision": "9abcc2260438177cecd7cf5185b144d13e74122b",
+          "version": "0.5.0"
         }
       },
       {
