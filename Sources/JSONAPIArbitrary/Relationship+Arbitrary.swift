@@ -8,7 +8,7 @@
 import SwiftCheck
 import JSONAPI
 
-extension ToOneRelationship: Arbitrary where Identifiable.Identifier: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
+extension ToOneRelationship: Arbitrary where Identifiable.ID: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
 	public static var arbitrary: Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> {
 		return Gen.compose { c in
 			return .init(id: c.generate(),
@@ -23,7 +23,7 @@ extension ToOneRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 	/// point to one of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to another entity.
-	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> where E.Id == Identifiable.Identifier {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> where E.Id == Identifiable.ID {
 
 		return Gen.compose { c in
 			let idGen = Gen.fromElements(of: givenEntities).map { $0.id }
@@ -34,7 +34,7 @@ extension ToOneRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 	}
 }
 
-extension ToManyRelationship: Arbitrary where Relatable.Identifier: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
+extension ToManyRelationship: Arbitrary where Relatable.ID: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
 	public static var arbitrary: Gen<ToManyRelationship<Relatable, MetaType, LinksType>> {
 		return Gen.compose { c in
 			return .init(ids: c.generate(),
@@ -49,7 +49,7 @@ extension ToManyRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 	/// point to some number of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to other existing entities.
-	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, MetaType, LinksType>> where E.Id == Relatable.Identifier {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, MetaType, LinksType>> where E.Id == Relatable.ID {
 		return Gen.compose { c in
 			let idsGen = Gen.fromElements(of: givenEntities).map { $0.id }.proliferate
 			return .init(ids: c.generate(using: idsGen),
@@ -57,4 +57,13 @@ extension ToManyRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
 						 links: c.generate())
 		}
 	}
+}
+
+extension MetaRelationship: Arbitrary where MetaType: Arbitrary, LinksType: Arbitrary {
+    public static var arbitrary: Gen<MetaRelationship<MetaType, LinksType>> {
+        return Gen.compose { c in
+            return .init(meta: c.generate(),
+                         links: c.generate())
+        }
+    }
 }
