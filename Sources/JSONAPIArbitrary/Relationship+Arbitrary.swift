@@ -8,53 +8,72 @@
 import SwiftCheck
 import JSONAPI
 
-extension ToOneRelationship: Arbitrary where Identifiable.ID: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
-	public static var arbitrary: Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> {
+extension ToOneRelationship: Arbitrary where Identifiable.ID: Arbitrary, IdMetaType: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
+	public static var arbitrary: Gen<ToOneRelationship<Identifiable, IdMetaType, MetaType, LinksType>> {
 		return Gen.compose { c in
-			return .init(id: c.generate(),
-						 meta: c.generate(),
-						 links: c.generate())
+			return .init(
+                id: (c.generate(), c.generate()),
+                meta: c.generate(),
+                links: c.generate()
+            )
 		}
 	}
 }
 
-extension ToOneRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
+extension ToOneRelationship where IdMetaType: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
 	/// Create a generator of arbitrary ToOneRelationships that will all
 	/// point to one of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to another entity.
-	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, MetaType, LinksType>> where E.Id == Identifiable.ID {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToOneRelationship<Identifiable, IdMetaType, MetaType, LinksType>> where E.Id == Identifiable.ID {
 
 		return Gen.compose { c in
 			let idGen = Gen.fromElements(of: givenEntities).map { $0.id }
-			return .init(id: c.generate(using: idGen),
-						 meta: c.generate(),
-						 links: c.generate())
+			return .init(
+                id: (c.generate(using: idGen), c.generate()),
+                meta: c.generate(),
+                links: c.generate()
+            )
 		}
 	}
 }
 
-extension ToManyRelationship: Arbitrary where Relatable.ID: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
-	public static var arbitrary: Gen<ToManyRelationship<Relatable, MetaType, LinksType>> {
+extension ToManyRelationship: Arbitrary where Relatable.ID: Arbitrary, IdMetaType: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
+	public static var arbitrary: Gen<ToManyRelationship<Relatable, IdMetaType, MetaType, LinksType>> {
+        let idWithMetaGen: Gen<ID> = Gen.compose { c in
+            return .init(
+                id: c.generate(),
+                meta: c.generate()
+            )
+        }
+        let idWithMetaArrayGen: Gen<[(Relatable.ID, IdMetaType)]> = idWithMetaGen
+            .map { ($0.id, $0.meta) }
+            .proliferate
 		return Gen.compose { c in
-			return .init(ids: c.generate(),
-						 meta: c.generate(),
-						 links: c.generate())
+			return .init(
+                idsWithMetadata: c.generate(using: idWithMetaArrayGen),
+                meta: c.generate(),
+                links: c.generate()
+            )
 		}
 	}
 }
 
-extension ToManyRelationship where MetaType: Arbitrary, LinksType: Arbitrary {
+extension ToManyRelationship where IdMetaType: Arbitrary, MetaType: Arbitrary, LinksType: Arbitrary {
 	/// Create a generator of arbitrary ToManyRelationships that will all
 	/// point to some number of the given entities. This allows you to create
 	/// arbitrary relationships that make sense in a broader context where
 	/// the relationship must actually point to other existing entities.
-	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, MetaType, LinksType>> where E.Id == Relatable.ID {
+	public static func arbitrary<E: ResourceObjectType>(givenEntities: [E]) -> Gen<ToManyRelationship<Relatable, IdMetaType, MetaType, LinksType>> where E.Id == Relatable.ID {
 		return Gen.compose { c in
-			let idsGen = Gen.fromElements(of: givenEntities).map { $0.id }.proliferate
-			return .init(ids: c.generate(using: idsGen),
-						 meta: c.generate(),
-						 links: c.generate())
+
+			let idsGen = Gen.zip(Gen.fromElements(of: givenEntities).map { $0.id }, IdMetaType.arbitrary)
+                .proliferate
+			return .init(
+                idsWithMetadata: c.generate(using: idsGen),
+                meta: c.generate(),
+                links: c.generate()
+            )
 		}
 	}
 }
