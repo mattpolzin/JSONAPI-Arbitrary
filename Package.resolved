@@ -1,61 +1,60 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Chalk",
-        "repositoryURL": "https://github.com/mxcl/Chalk.git",
-        "state": {
-          "branch": null,
-          "revision": "9aa9f348b86db3cf6702a3e43c081ecec80cf3c7",
-          "version": "0.4.0"
-        }
-      },
-      {
-        "package": "FileCheck",
-        "repositoryURL": "https://github.com/llvm-swift/FileCheck.git",
-        "state": {
-          "branch": null,
-          "revision": "f25bfb4c69b9e05bf6b8d0862dcedb875c1b0f68",
-          "version": "0.2.4"
-        }
-      },
-      {
-        "package": "JSONAPI",
-        "repositoryURL": "https://github.com/mattpolzin/JSONAPI.git",
-        "state": {
-          "branch": null,
-          "revision": "c645c73f51808b85a881e8af6f286086ee65cc35",
-          "version": "5.0.0"
-        }
-      },
-      {
-        "package": "Poly",
-        "repositoryURL": "https://github.com/mattpolzin/Poly.git",
-        "state": {
-          "branch": null,
-          "revision": "36ba3f624bffa34f5f9b9c7648eab3cfdcab4748",
-          "version": "2.5.0"
-        }
-      },
-      {
-        "package": "swift-tools-support-core",
-        "repositoryURL": "https://github.com/apple/swift-tools-support-core.git",
-        "state": {
-          "branch": null,
-          "revision": "693aba4c4c9dcc4767cc853a0dd38bf90ad8c258",
-          "version": "0.0.1"
-        }
-      },
-      {
-        "package": "SwiftCheck",
-        "repositoryURL": "https://github.com/typelift/SwiftCheck.git",
-        "state": {
-          "branch": null,
-          "revision": "077c096c3ddfc38db223ac8e525ad16ffb987138",
-          "version": "0.12.0"
-        }
+  "originHash" : "b3cce53b25ce87fb8180b8589930711ad70b0f0bbdce9fba9bd8abbfd1c1dffa",
+  "pins" : [
+    {
+      "identity" : "chalk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/Chalk.git",
+      "state" : {
+        "revision" : "9aa9f348b86db3cf6702a3e43c081ecec80cf3c7",
+        "version" : "0.4.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "filecheck",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/llvm-swift/FileCheck.git",
+      "state" : {
+        "revision" : "f25bfb4c69b9e05bf6b8d0862dcedb875c1b0f68",
+        "version" : "0.2.4"
+      }
+    },
+    {
+      "identity" : "jsonapi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattpolzin/JSONAPI.git",
+      "state" : {
+        "revision" : "d3457ae21a76b21e9a8f5bf3953ba9166cfa12f0",
+        "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "poly",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattpolzin/Poly.git",
+      "state" : {
+        "revision" : "37c942daa23ab373ce05ef87f42103342e59cf3a",
+        "version" : "3.0.0"
+      }
+    },
+    {
+      "identity" : "swift-tools-support-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-tools-support-core.git",
+      "state" : {
+        "revision" : "693aba4c4c9dcc4767cc853a0dd38bf90ad8c258",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "swiftcheck",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/typelift/SwiftCheck.git",
+      "state" : {
+        "revision" : "077c096c3ddfc38db223ac8e525ad16ffb987138",
+        "version" : "0.12.0"
+      }
+    }
+  ],
+  "version" : 3
 }
