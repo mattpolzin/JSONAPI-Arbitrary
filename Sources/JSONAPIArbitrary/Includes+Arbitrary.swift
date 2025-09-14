@@ -7,6 +7,7 @@
 
 import SwiftCheck
 import JSONAPI
+import Poly
 
 extension Includes: Arbitrary where I: Arbitrary {
 	public static var arbitrary: Gen<Includes<I>> {
